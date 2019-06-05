@@ -234,7 +234,7 @@
         </div>
     </div>
 
-////////////////////////////////////////////LOGIN///////////////////////////////////////////////
+<!-- ////////////////////////////////////////////LOGIN/////////////////////////////////////////////// -->
     <!-- Modal login -->
     <div id="modal1" class="modal modalLC" style="overflow:hidden;max-height: 490px;height: 100vh!important">
         <div class="modal-header">
@@ -276,10 +276,10 @@
             </div>
         </div>
     </div>
-    ///////////////////////////////////////FIM LOGIN////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////
+    <!-- ///////////////////////////////////////FIM LOGIN//////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////// -->
 
-    ////////////////////////////CADASTRO//////////////////////////////////////////
+    <!-- ////////////////////////////CADASTRO////////////////////////////////////////// -->
     <!-- modal cadastro -->
     <div id="modal2" class="modal modalLC" style="max-height: 80%;height: 100vh!important">
         <div class="modal-header">
@@ -314,22 +314,22 @@
                         </div>
                         <div class="input-field col s12">
 
-                            <button class="btn waves-effect waves-light green lighten-1" type="button"
+                            <button id="btn_cadastrar" class="btn waves-effect waves-light green lighten-1" type="button"
                                 style="width: 100%;  border-radius: 30px;height: 45px;" onclick="Cadastrar(nomeCompleto,email2,telefone,usuario2,Password2)">Cadastrar
                                 <!-- <i class="material-icons right">send</i> -->
                             </button>
                             <center>
-                                    <img src="img_aguarde.gif" id="img_aguarde" style="display:none">    
-                            </center>
+                                <img src="img_aguarde2.gif" id="img_aguarde2" style="display:none">    
+                        </center>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-///////////////////////////////////////FIM CADASTRO///////////////////////////////////////////
+<!-- ///////////////////////////////////////FIM CADASTRO/////////////////////////////////////////// -->
 
-//////////////////////////////////////SIMULADOR//////////////////////////////////////////
+<!-- //////////////////////////////////////SIMULADOR////////////////////////////////////////// -->
     <!-- Modal do simulador -->
     <div id="mSimulador" class="modal" style="height: 100vh!important;top: 5%;max-height: 85%;">
         <div class="modal-header">
@@ -379,7 +379,7 @@
             </div>
         </div>
     </div>
-    /////////////////////////////////FIM SIMULADOR//////////////////////////////////////////////
+    <!-- /////////////////////////////////FIM SIMULADOR////////////////////////////////////////////// -->
 
     <script>
         window.fcWidget.init({
@@ -483,17 +483,17 @@
     }
 
     function Cadastrar(nome,email,telefone,usuario,senha){
-        
+        aguardar2()
         fetch(`usuarios/cadastrar/?nome=${nome.value}&email=${email.value}&telefone=${telefone.value}&usuarioLogin=${usuario.value}&senha=${senha.value}`, { method: 'POST' }).then(js => {
             console.log(js.status);
             if (js.status === 200) {
-                finalizar_aguardar();
+                finalizar_aguardar2()
                 M.toast({ html: 'Usuário cadastrado com sucesso!' })
             } else if(js.status === 500){
-                finalizar_aguardar();
+                finalizar_aguardar2()
                 M.toast({ html: 'Problema com a conexão!' })
             }else {
-                finalizar_aguardar();
+                finalizar_aguardar2()
                 M.toast({ html: 'Ocorreu um problema ao cadastrar!' })
             }
         })
@@ -507,5 +507,14 @@
     function finalizar_aguardar() {
         btn_entrar.disabled = false;
         img_aguarde.style.display='none';
+    }
+    function aguardar2() {
+        btn_cadastrar.disabled = true;
+        img_aguarde2.style.display='block';
+        
+    }
+    function finalizar_aguardar2() {
+        btn_cadastrar.disabled = false;
+        img_aguarde2.style.display='none';
     }
 </script>

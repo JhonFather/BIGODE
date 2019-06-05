@@ -16,8 +16,11 @@ router.post('/cadastrar/',function (req, res, next) {
   banco.conectar().then(() => {
     console.log(`Chegou p/ cadastro: ${JSON.stringify(req.query)}`);
     var json = req.query;
-    
+    if(json.email == '' || json.nome == '' || json.senha == '' || json.telefone == '' || json.usuarioLogin == ''){
+      console.log('Preencha todos os campos!');
+    }else{
     return banco.sql.query(`insert into usuario values('${json.email}','${json.nome}','${json.senha}','${json.telefone}','${json.usuarioLogin}',null)`);
+    }
   }).then(consulta => {
 
     
@@ -44,7 +47,11 @@ router.post('/cadastrarUsuario/',function (req, res, next) {
     console.log(`Chegou p/ cadastro: ${JSON.stringify(req.query)}`);
     var json = req.query;
     
+    if(json.email == '' || json.nome == '' || json.senha == '' || json.telefone == '' || json.usuarioLogin == ''){
+      console.log('Preencha todos os campos!');
+    }else{
     return banco.sql.query(`insert into usuario values('${json.email}','${json.nome}','${json.senha}','${json.telefone}','${json.usuarioLogin}',null)`);
+    }
   }).then(consulta => {
 
     
