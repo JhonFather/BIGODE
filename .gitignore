@@ -63,3 +63,5 @@ typings/
 .directory
 
 package-lock.json
+/projeto-yoshi/joao/projetoyoshi/target/
+/projeto-yoshi/joao/target/

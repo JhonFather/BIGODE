@@ -1,3 +1,0 @@
-# BIGODE
-Facu
-ererfewfrwf
