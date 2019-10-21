@@ -1,7 +1,7 @@
 {
   "name": "gentelella",
   "version": "1.4.0",
-  "description": "Gentelella Admin is a free to use Bootstrap admin template",
+  "description": "",
   "scripts": {
     "start": "node ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -29,7 +29,8 @@
   },
   "author": "Aigars Silkalns",
   "contributors": [
-    "Christian Esperar"
+    "Christian Esperar",
+    "João Vinicius"
   ],
   "license": "MIT",
   "main": "build/js/custom.min.js",
