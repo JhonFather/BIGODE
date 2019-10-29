@@ -60,6 +60,19 @@ module.exports = {
     debug: Env.get('DB_DEBUG', false)
   },
 
+  mssql: {
+    client: "mssql",
+    connection: {
+      host: Env.get("APPSETTING_DB_HOST", "srvdatasource.database.windows.net"),
+      user: Env.get("APPSETTING_DB_USER", "userdatasource"),
+      password: Env.get("APPSETTING_DB_PASSWORD", "#Gfgrupo6b"),
+      database: Env.get("APPSETTING_DB_DATABASE", "bddatasource"),
+      options: {
+        encrypt: true
+      }
+    }
+  },
+
   /*
   |--------------------------------------------------------------------------
   | PostgreSQL

@@ -1,3 +1,3 @@
 [config]
 
-project = Dashboard/dashboardDataSource
+project = api-server
