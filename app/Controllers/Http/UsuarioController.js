@@ -18,7 +18,7 @@ class UsuarioController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index ({ request, response, view }) {
+  async index({ request, response, view }) {
     const retornoSQL = Usuario.all();
 
     return retornoSQL;
@@ -33,9 +33,9 @@ class UsuarioController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async create ({ request, response, view }) {
+  async create({ request, response, view }) {
 
-    
+
   }
 
   /**
@@ -46,23 +46,33 @@ class UsuarioController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store ({ request, response }) {
+  async store({ request, response }) {
 
     const usuario = new Usuario()
 
     const retornoSQL = usuario;
 
-    const {user, email, senha, indicacao, tipo} = request.body;
+    const { user, email, senha, indicacao, tipo } = request.body;
 
-    usuario.USUA_NO_USUARIO = user
-    usuario.USUA_NO_EMAIL = email
-    usuario.USUA_CD_SENHA = senha
-    usuario.USUA_NO_INDICACAO = indicacao
-    usuario.USUA_TP_USUARIO = tipo
+    const verify = await Usuario.findBy('USUA_NO_EMAIL', email);
+    if (verify === null) {
+      usuario.USUA_NO_USUARIO = user
+      usuario.USUA_NO_EMAIL = email
+      usuario.USUA_CD_SENHA = senha
+      usuario.USUA_NO_INDICACAO = indicacao
+      usuario.USUA_TP_USUARIO = tipo
 
-    await usuario.save()
+      await usuario.save()
 
-    return retornoSQL
+      let response = "Cadastrado com sucesso"
+
+      return response;
+    } else {    
+        let response = "Usuário já existente"
+
+        return response;     
+    }
+    return retornoSQL; 
   }
 
   /**
@@ -74,7 +84,7 @@ class UsuarioController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show ({ params, request, response, view }) {
+  async show({ params, request, response, view }) {
   }
 
   /**
@@ -86,7 +96,7 @@ class UsuarioController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async edit ({ params, request, response, view }) {
+  async edit({ params, request, response, view }) {
   }
 
   /**
@@ -97,7 +107,23 @@ class UsuarioController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
+  async update({ params, request, response }) {
+
+    const id = params.id
+    const usuario = await Usuario.find(id)
+
+
+    const { user, email, senha } = request.body;
+
+    usuario.USUA_NO_USUARIO = user
+    usuario.USUA_NO_EMAIL = email
+    usuario.USUA_CD_SENHA = senha
+
+
+    await usuario.save()
+
+    return usuario
+
   }
 
   /**
@@ -108,25 +134,32 @@ class UsuarioController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {
+  async destroy({ params, request, response }) {
+    const id = params.id
+
+    const usuario = await Usuario.find(id)
+
+    await usuario.delete()
+
+    return "Excluido com sucesso"
   }
 
-  async login ({ params, request, response }) {
+  async login({ params, request, response }) {
 
-    const {email, senha} = request.body;
+    const { email, senha } = request.body;
 
-    const retornoSQL = await Usuario.findBy('USUA_NO_EMAIL' , email);
-    if(retornoSQL === null){
+    const retornoSQL = await Usuario.findBy('USUA_NO_EMAIL', email);
+    if (retornoSQL === null) {
       let response = { data: null }
 
       return response;
-    }else{
-      if(email === retornoSQL.USUA_NO_EMAIL && senha === retornoSQL.USUA_CD_SENHA){
+    } else {
+      if (email === retornoSQL.USUA_NO_EMAIL && senha === retornoSQL.USUA_CD_SENHA) {
         let response = { data: retornoSQL }
 
         return response;
-      }else{
-        let response = { data: null}
+      } else {
+        let response = { data: null }
 
         return response;
       }
