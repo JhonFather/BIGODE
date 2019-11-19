@@ -20,7 +20,7 @@ class ServidorController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
-    const retornoSQL = Servidor.findBy('MAQU_DS_TIPO_MAQUINA',"Servidor");
+    const retornoSQL = Servidor.findBy('MAQU_DS_TIPO_MAQUINA','Servidor');
 
     return retornoSQL;
   }
