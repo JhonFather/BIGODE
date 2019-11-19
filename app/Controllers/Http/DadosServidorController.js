@@ -5,14 +5,12 @@
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
 /**
- * Resourceful controller for interacting with servidors
+ * Resourceful controller for interacting with dadosservidors
  */
-
- const Servidor = use('App/Models/Servidor')
-class ServidorController {
+class DadosServidorController {
   /**
-   * Show a list of all servidors.
-   * GET servidors
+   * Show a list of all dadosservidors.
+   * GET dadosservidors
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -20,14 +18,11 @@ class ServidorController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
-    const retornoSQL = Servidor.findBy('MAQU_NO_SISTEMA_OPERACIONAL',"LINUX");
-
-    return retornoSQL;
   }
 
   /**
-   * Render a form to be used for creating a new servidor.
-   * GET servidors/create
+   * Render a form to be used for creating a new dadosservidor.
+   * GET dadosservidors/create
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -38,8 +33,8 @@ class ServidorController {
   }
 
   /**
-   * Create/save a new servidor.
-   * POST servidors
+   * Create/save a new dadosservidor.
+   * POST dadosservidors
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -49,8 +44,8 @@ class ServidorController {
   }
 
   /**
-   * Display a single servidor.
-   * GET servidors/:id
+   * Display a single dadosservidor.
+   * GET dadosservidors/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -58,12 +53,11 @@ class ServidorController {
    * @param {View} ctx.view
    */
   async show ({ params, request, response, view }) {
-   
   }
 
   /**
-   * Render a form to update an existing servidor.
-   * GET servidors/:id/edit
+   * Render a form to update an existing dadosservidor.
+   * GET dadosservidors/:id/edit
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -74,8 +68,8 @@ class ServidorController {
   }
 
   /**
-   * Update servidor details.
-   * PUT or PATCH servidors/:id
+   * Update dadosservidor details.
+   * PUT or PATCH dadosservidors/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -85,8 +79,8 @@ class ServidorController {
   }
 
   /**
-   * Delete a servidor with id.
-   * DELETE servidors/:id
+   * Delete a dadosservidor with id.
+   * DELETE dadosservidors/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -96,4 +90,4 @@ class ServidorController {
   }
 }
 
-module.exports = ServidorController
+module.exports = DadosServidorController

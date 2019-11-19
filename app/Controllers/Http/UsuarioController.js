@@ -50,9 +50,10 @@ class UsuarioController {
 
     const usuario = new Usuario()
 
-    const retornoSQL = usuario;
 
     const { user, email, senha, indicacao, tipo } = request.body;
+
+    //console.log(request.body)
 
     const verify = await Usuario.findBy('USUA_NO_EMAIL', email);
     if (verify === null) {
@@ -72,7 +73,7 @@ class UsuarioController {
 
         return response;     
     }
-    return retornoSQL; 
+   
   }
 
   /**
