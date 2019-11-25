@@ -57,6 +57,13 @@ class DadosServidorController {
    * @param {View} ctx.view
    */
   async show ({ params, request, response, view }) {
+    const id = params.id
+    const retornoSQL = await DadosServidor
+    .query()
+      .where('FK_MAQU_CODA', '=',id)
+      .fetch()
+
+    return retornoSQL;
   }
 
   /**
