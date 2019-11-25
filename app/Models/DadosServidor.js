@@ -5,11 +5,15 @@ const Model = use('Model')
 
 class DadosServidor extends Model {
     static get table(){
-        return 'TTB_COLETA_DADOS_CODA'
+        return 'TB_COLETA_DADOS_CODA'
     }
 
     static get primaryKey(){
         return 'ID_CODA_CD_COLETA'
+    }
+
+    static get foreignKey(){
+        return 'FK_MAQU_CODA'
     }
 
     static get createdAtColumn(){

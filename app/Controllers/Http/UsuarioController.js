@@ -19,7 +19,7 @@ class UsuarioController {
    * @param {View} ctx.view
    */
   async index({ request, response, view }) {
-    const retornoSQL = Usuario.all();
+    const retornoSQL = await  Usuario.all();
 
     return retornoSQL;
   }

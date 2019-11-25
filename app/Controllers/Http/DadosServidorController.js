@@ -7,6 +7,7 @@
 /**
  * Resourceful controller for interacting with dadosservidors
  */
+const DadosServidor = use('App/Models/DadosServidor')
 class DadosServidorController {
   /**
    * Show a list of all dadosservidors.
@@ -18,6 +19,9 @@ class DadosServidorController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
+    const retornoSQL = await  DadosServidor.all();
+
+    return retornoSQL;
   }
 
   /**

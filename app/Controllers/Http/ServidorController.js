@@ -8,7 +8,7 @@
  * Resourceful controller for interacting with servidors
  */
 
- const Servidor = use('App/Models/Servidor')
+const Servidor = use('App/Models/Servidor')
 class ServidorController {
   /**
    * Show a list of all servidors.
@@ -19,8 +19,11 @@ class ServidorController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index ({ request, response, view }) {
-    const retornoSQL = Servidor.findBy('MAQU_DS_TIPO_MAQUINA','Servidor');
+  async index({ request, response, view }) {
+    const retornoSQL = await Servidor
+      .query()
+      .where('MAQU_DS_TIPO_MAQUINA', 'Servidor')
+      .fetch()
 
     return retornoSQL;
   }
@@ -34,7 +37,7 @@ class ServidorController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async create ({ request, response, view }) {
+  async create({ request, response, view }) {
   }
 
   /**
@@ -45,7 +48,7 @@ class ServidorController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store ({ request, response }) {
+  async store({ request, response }) {
   }
 
   /**
@@ -57,8 +60,8 @@ class ServidorController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show ({ params, request, response, view }) {
-   
+  async show({ params, request, response, view }) {
+
   }
 
   /**
@@ -70,7 +73,7 @@ class ServidorController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async edit ({ params, request, response, view }) {
+  async edit({ params, request, response, view }) {
   }
 
   /**
@@ -81,7 +84,7 @@ class ServidorController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
+  async update({ params, request, response }) {
   }
 
   /**
@@ -92,7 +95,14 @@ class ServidorController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {
+  async destroy({ params, request, response }) {
+    const id = params.id
+
+    const servidor = await Servidor.find(id)
+
+    await servidor.delete()
+
+    return "Excluido com sucesso"
   }
 }
 
